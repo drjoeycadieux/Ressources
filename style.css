@@ -146,7 +146,15 @@ div#costumer-services {
      
 }
 h1 {
-	font-family: Arial;
+	 font-family:Arial;
   font-size: 1.2em;
-  font-weight: bold;
+  font-color: #515151;
+    font-weight: bold 
+}
+
+p {
+	font-family:Arial;
+  font-size: 1.2em;
+  font-color: #515151;
+  font-weight: bold 
 }
