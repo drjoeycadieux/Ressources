@@ -1,18 +1,149 @@
 body {
-	padding: 0;
-	margin: 0;
-	background-color: rgb(230, 229, 229);
+  background-color: rgb(197, 197, 197);
 }
 header {
-	padding: 5px;
-  background: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(30, 146, 224);
+  margin: 0;
+  margin-bottom: 32px;
+  padding: 18px;
+  border-radius: 3px;
+  font-size: 2.4em;
+  font-weight: normal;
+  border-bottom: 1px rgb(253, 253, 253) solid;
 }
-#contenu22 {
-	 background-color:#ffffff;
-   margin-top: 20px;   
+#footer, #copyright, #container {
+  margin-top: 80px;
+  padding: 1.2em 0;
+  background: rgb(255, 254, 254);
+  bottom: 0;
+  margin-right: -33px;
+  text-align: center;
+  font-family: "Fjalla One", Verdana, Geneva, sans-serif;
+  font-size: 0.55em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+}
+
+header a, header a:visited {
+  color: rgb(22, 149, 233);
+  text-decoration: none;
+}
+  
+#templatemo_wrapper {
+  width: 680px;
+  margin: 0 auto;
+  background-color:#b6b6b6"
+  }
+    
+    
+    #templatmeo_header {
+  width: 100%;
+      padding-top: 20px;
+      margin: 0 auto;
+      position: top;
+  background-color:#ffffff;
+      border : 0;
+     
+  }
+  div#jaune {
+
+    background-color:#ffdd00;
+        padding: 1em;
+        vertical-align:middle;
+        text-align: center;
+         margin-top: 20px;  
+        border-radius: 10px 10px 0 0;
+    }
+
+    div#contenu22 { 
+      
+  
+      background-color:#ffffff;
+        
+      padding: 1.5em 2.1em;
+      vertical-align:middle;
+      
+      
+      border-radius: 0 0 10px 10px;  
+        
+  }
+
+  h1.logo    {
+    
+    margin-left: -23px;
+
+  
+   
+}  
+
+#col1
+{
+
+ float:left;
+padding: 5px;
+width: 150px;
+}
+
+  #col2
+{
+
+ float:left;
+padding: 5px;
+width: 150px;
+ margin-left: 150px;
+}
+
+
+
+     div#uno {
+
+padding: 1.5em;
+ vertical-align:middle;
+ 
+ border-radius: 10px 10px 0 0;
+
+}
+body {
+
+    background-color:rgb(240, 240, 240)
+      
+}
+
+  
+  
+nav {
+  padding:5px;
+  background:white;
+    align:center;
+}
+  
+
+div#social { 
+      
+  background-color:#ffffff;
+   
+  margin-top: 20px;   
    padding: 1.5em 2.1em;
    vertical-align:middle;
+   
    border-radius: 10px 10px 10px 10px;
+     
+     
+}
+  
+div#costumer-services { 
+      
+  background-color:#ffffff;
+   
+  margin-top: 20px;   
+   padding: 1.5em 2.1em;
+   vertical-align:middle;
+   
+   border-radius: 10px 10px 10px 10px;
+     
+     
 }
 h1 {
 	font-family: Arial;
