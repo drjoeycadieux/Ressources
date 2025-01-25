@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIRTA Online Reservation</title>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border-bottom: 2px solid #ddd;
+        }
+
+        header img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #0073e6;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+            background: #e6eef2;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: calc(100% - 24px); /* Adjusted to fit inside the container */
+            padding: 12px; /* Increased padding for larger inputs */
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Increased font size for better visibility */
+            box-sizing: border-box;
+        }
+
+        .optional {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .actions {
+            text-align: right;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .actions .submit {
+            background-color: #0073e6;
+            color: #fff;
+        }
+
+        .actions .cancel {
+            background-color: #ccc;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="bus_icon_placeholder.png" alt="SIRTA Logo">
+    <h1>Transport Online Reservation</h1>
+</header>
+
+<main>
+    <h2>Request for occasional transportation</h2>
+
+    <div class="form-section">
+        <div class="section-title">When</div>
+        <label for="schedule-date">Schedule date</label>
+        <input type="date" id="schedule-date">
+
+        <label for="type">Type</label>
+        <select id="type">
+            <option value="round-trip">Round-trip</option>
+            <option value="one-way">One-way</option>
+        </select>
+
+        <label for="arrival-time">Requested arrival time (to go)</label>
+        <input type="time" id="arrival-time">
+
+        <label for="departure-time">Requested departure time (to return)</label>
+        <input type="time" id="departure-time">
+    </div>
+
+    <div class="form-section">
+        <div class="section-title">Where</div>
+        <label for="departure-address">Departure address</label>
+        <select id="departure-address">
+            <option>Select a type of address</option>
+            <option>10 Rue Capri</option>
+            <option>7974 Rue Simonne</option>
+        </select>
+        <span class="optional">Add information for the address (OPTIONAL)</span>
+
+        <label for="destination-address">Destination address</label>
+        <select id="destination-address">
+            <option>Select a type of address</option>
+            <option>10 Rue Capri</option>
+            <option>7974 Rue Simonne</option>
+        </select>
+        <span class="optional">Add information for the address (OPTIONAL)</span>
+    </div>
+
+    <div class="form-section">
+        <div class="section-title">Mobility aid</div>
+        <label>
+            <input type="checkbox" id="mobility-aid">
+            Requested mobility aid for this trip
+        </label>
+    </div>
+
+    <div class="form-section">
+        <div class="section-title">Travel companion</div>
+        <label>
+            <input type="text" id="travel-companion" placeholder="Add companion details">
+        </label>
+    </div>
+
+    <div class="actions">
+        <button class="cancel">Cancel</button>
+        <button class="submit" onclick="submitForm()">Submit</button>
+    </div>
+</main>
+
+<script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function submitForm() {
+        const scheduleDate = document.getElementById('schedule-date').value;
+        const type = document.getElementById('type').value;
+        const arrivalTime = document.getElementById('arrival-time').value;
+        const departureTime = document.getElementById('departure-time').value;
+        const departureAddress = document.getElementById('departure-address').value;
+        const destinationAddress = document.getElementById('destination-address').value;
+        const mobilityAid = document.getElementById('mobility-aid').checked;
+        const travelCompanion = document.getElementById('travel-companion').value;
+
+        db.collection('reservations').add({
+            scheduleDate,
+            type,
+            arrivalTime,
+            departureTime,
+            departureAddress,
+            destinationAddress,
+            mobilityAid,
+            travelCompanion
+        }).then(() => {
+            alert('Reservation submitted successfully!');
+        }).catch((error) => {
+            console.error('Error submitting reservation: ', error);
+        });
+    }
+</script>
+
+</body>
+</html>
