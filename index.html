@@ -109,110 +109,67 @@
     <div id="formDataTransport">
         <main>
             <h2>Request for occasional transportation</h2>
-
-            <div class="form-section">
-                <div class="section-title">When</div>
-                <label for="schedule-date">Schedule date</label>
-                <input type="date" id="schedule-date" required>
-
-                <label for="type">Type</label>
-                <select id="type" required>
-                    <option value="round-trip">Round-trip</option>
-                    <option value="one-way">One-way</option>
-                </select>
-
-                <label for="arrival-time">Requested arrival time (to go)</label>
-                <input type="time" id="arrival-time" required>
-
-                <label for="departure-time">Requested departure time (to return)</label>
-                <input type="time" id="departure-time" required>
-            </div>
-
-            <div class="form-section">
-                <div class="section-title">Where</div>
-                <label for="departure-address">Departure address</label>
-                <select id="departure-address" required>
-                    <option value="">Select a type of address</option>
-                    <option>Group Home</option>
-                    <option>Mom House</option>
-                </select>
-                <span class="optional">Add information for the address (OPTIONAL)</span>
-
-                <label for="destination-address">Destination address</label>
-                <select id="destination-address" required>
-                    <option value="">Select a type of address</option>
-                    <option>Mom House</option>
-                    <option>Group Home</option>
-                </select>
-                <span class="optional">Add information for the address (OPTIONAL)</span>
-            </div>
-
-            <div class="form-section">
-                <div class="section-title">Mobility aid</div>
-                <label>
-                    <input type="checkbox" id="mobility-aid">
-                    Requested mobility aid for this trip
-                </label>
-            </div>
-
-            <div class="form-section">
-                <div class="section-title">Travel companion</div>
-                <label>
-                    <input type="text" id="travel-companion" placeholder="Add companion details" required>
-                </label>
-            </div>
-
-            <div class="actions">
-                <button class="cancel">Cancel</button>
-                <button class="submit" onclick="submitForm()">Submit</button>
-            </div>
+    
+            <form method="POST" action="submit_transportation.php">
+                <div class="form-section">
+                    <div class="section-title">When</div>
+                    <label for="schedule-date">Schedule date</label>
+                    <input type="date" id="schedule-date" name="schedule-date" required>
+    
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="round-trip">Round-trip</option>
+                        <option value="one-way">One-way</option>
+                    </select>
+    
+                    <label for="arrival-time">Requested arrival time (to go)</label>
+                    <input type="time" id="arrival-time" name="arrival-time" required>
+    
+                    <label for="departure-time">Requested departure time (to return)</label>
+                    <input type="time" id="departure-time" name="departure-time" required>
+                </div>
+    
+                <div class="form-section">
+                    <div class="section-title">Where</div>
+                    <label for="departure-address">Departure address</label>
+                    <select id="departure-address" name="departure-address" required>
+                        <option value="">Select a type of address</option>
+                        <option>Group Home</option>
+                        <option>Mom House</option>
+                    </select>
+                    <span class="optional">Add information for the address (OPTIONAL)</span>
+    
+                    <label for="destination-address">Destination address</label>
+                    <select id="destination-address" name="destination-address" required>
+                        <option value="">Select a type of address</option>
+                        <option>Mom House</option>
+                        <option>Group Home</option>
+                    </select>
+                    <span class="optional">Add information for the address (OPTIONAL)</span>
+                </div>
+    
+                <div class="form-section">
+                    <div class="section-title">Mobility aid</div>
+                    <label>
+                        <input type="checkbox" id="mobility-aid" name="mobility-aid">
+                        Requested mobility aid for this trip
+                    </label>
+                </div>
+    
+                <div class="form-section">
+                    <div class="section-title">Travel companion</div>
+                    <label>
+                        <input type="text" id="travel-companion" name="travel-companion" placeholder="Add companion details" required>
+                    </label>
+                </div>
+    
+                <div class="actions">
+                    <button type="button" class="cancel">Cancel</button>
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </form>
         </main>
     </div>
-
-
-    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
-    <script type="module">
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDxaapHbE03xWYYIjx9WemLC7S6ffniljU",
-            authDomain: "transport-2e08c.firebaseapp.com",
-            projectId: "transport-2e08c",
-            storageBucket: "transport-2e08c.firebasestorage.app",
-            messagingSenderId: "658545773715",
-            appId: "1:658545773715:web:bfa7f01add4356671d9166"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        function submitForm() {
-            const scheduleDate = document.getElementById('schedule-date').value;
-            const type = document.getElementById('type').value;
-            const arrivalTime = document.getElementById('arrival-time').value;
-            const departureTime = document.getElementById('departure-time').value;
-            const departureAddress = document.getElementById('departure-address').value;
-            const destinationAddress = document.getElementById('destination-address').value;
-            const mobilityAid = document.getElementById('mobility-aid').checked;
-            const travelCompanion = document.getElementById('travel-companion').value;
-
-            db.collection('reservations').add({
-                scheduleDate,
-                type,
-                arrivalTime,
-                departureTime,
-                departureAddress,
-                destinationAddress,
-                mobilityAid,
-                travelCompanion
-            }).then(() => {
-                alert('Reservation submitted successfully!');
-            }).catch((error) => {
-                console.error('Error submitting reservation: ', error);
-            });
-        }
-    </script>
 
 </body>
 
